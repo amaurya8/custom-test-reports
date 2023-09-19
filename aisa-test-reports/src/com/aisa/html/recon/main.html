@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+    .topHeader{
+      height: 4.00vh;
+      background-color: #FF6347;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      text-align: center;
+      padding: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+     .logo {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    .top {
+      height: 40.00vh;
+      width: 200.00vh;
+      background-color: #f2f2f2;
+<!--      border-bottom: 1px solid #ccc;-->
+      border: 3px double #000; /* Add 2-lined border to both halves */
+     display: flex;
+    flex-direction: row;
+<!--    margin: auto; /*These will make the item in center*/-->
+     padding: 10px;
+    }
+    .middle {
+       display: flex;
+      height: 33.33vh;
+      background-color: #e6e6e6;
+<!--      border-bottom: 1px solid #ccc;-->
+      border: 3px double #000; /* Add 2-lined border to both halves */
+
+    }
+
+    .left-half,
+    .right-half {
+      flex: 1; /* Divide the middle section into equal halves */
+      padding: 5px; /* Add padding to both halves */
+      border: 1px double #000; /* Add 2-lined border to both halves */
+    }
+
+    .bottom {
+      height: 33.33vh;
+      background-color: #d9d9d9;
+      border: 3px double #000; /* Add 2-lined border to both halves */
+    }
+
+    .chart-container {
+      width: 40.00%;
+      height: 100%;
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding: 10px;
+      vertical-align: top;
+      cursor: pointer;
+    }
+
+    .chart-container:nth-child(3),
+    .chart-container:nth-child(6) {
+      border-bottom: none;
+    }
+
+    .chart-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+/* Style for the tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      position: sticky; /* Make the table header sticky */
+      top: 0; /* Stick to the top */
+    }
+        /* Style for the scrollable div */
+    .scrollable {
+      overflow-y: auto; /* Add vertical scrollbar */
+      max-height: calc(100% - 60px); /* Set maximum height for right-half div minus padding */
+    }
+/* Style for the collapsible button */
+    .collapsible-btn {
+      background-color: #EAFFF1;
+      color: 1B4228;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .last_bottom {
+      height: 33.33vh;
+      background-color: #d9d9d9;
+      border: 3px double #000; /* Add 2-lined border to both halves */
+    }
+
+  </style>
+    <script>
+    function toggleBottom() {
+      var bottomSection = document.querySelector('.bottom');
+      var hiddenTable = document.querySelector('.hidden-table');
+
+      if (bottomSection.style.display === 'none' || bottomSection.style.display === '') {
+        bottomSection.style.display = 'block';
+        hiddenTable.style.display = 'none'; // Hide the additional table
+      } else {
+        bottomSection.style.display = 'none';
+        hiddenTable.style.display = 'block'; // Show the additional table
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+    <div class="topHeader">
+        Data Recon Report
+        <!-- Content for the header section -->
+<!--        <img class="logo" src="/Users/ashok/Desktop/Report_Explorer/ubs_logo" alt="Logo">-->
+    </div>
+    <div class="top">
+        <!-- Content for the top section -->
+<!--        <div class="topElement1">Sub Header 1</div>-->
+        <div class="chart-container">
+            <div class="chart-title">Summary</div>
+            <canvas id="chart1"></canvas>
+        </div>
+        <div class="chart-container" >
+            <div class="chart-title">Row Summary</div>
+            <canvas id="chart2"></canvas>
+            </div>
+            <div class="chart-container" >
+                <div class="chart-title">Column Summary</div>
+                <canvas id="chart3"></canvas>
+            </div>
+    </div>
+    <div class="middle">
+        <!-- Content for the middle section -->
+        <div class="left-half">
+                <h3>Column Comparison</h3>
+                <table>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Number of columns compared with some values unequal:</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Number of columns compared with all values equal:</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Total number of values which compare unequal:</td>
+                        <td>7</td>
+                    </tr>
+                </table>
+            </div>
+        <div class="right-half">
+            <h3> Columns with un-eq values / types </h3>
+            <!-- Wrap the table in a scrollable div -->
+            <div class="scrollable">
+            <table>
+                <tr>
+                    <th>Column</th>
+                    <th>Original Dtype</th>
+                    <th>New Dtype</th>
+                    <th># Unequal</th>
+                    <th>Max Diff</th>
+                    <th># Null Diff</th>
+                </tr>
+                <tr>
+                    <td>dollar_amt</td>
+                    <td>float64</td>
+                    <td>float64</td>
+                    <td>1</td>
+                    <td>0.0500</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>float_fld</td>
+                    <td>float64</td>
+                    <td>float64</td>
+                    <td>4</td>
+                    <td>0.0005</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>object</td>
+                    <td>object</td>
+                    <td>2</td>
+                    <td>0.0000</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>column1</td>
+                    <td>int64</td>
+                    <td>int64</td>
+                    <td>5</td>
+                    <td>0.0025</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>column2</td>
+                    <td>float64</td>
+                    <td>float64</td>
+                    <td>2</td>
+                    <td>0.0010</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>column3</td>
+                    <td>object</td>
+                    <td>object</td>
+                    <td>3</td>
+                    <td>0.0003</td>
+                    <td>0</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <h2>Rows with un-eq values</h2>
+        <table>
+            <tr>
+                <th>acct_id</th>
+                <th>float_fld (original)</th>
+                <th>float_fld (new)</th>
+            </tr>
+            <tr>
+                <td>10000001234</td>
+                <td>14530.1555</td>
+                <td>14530.155</td>
+            </tr>
+            <tr>
+                <td>10000001238</td>
+                <td>NaN</td>
+                <td>111.000</td>
+            </tr>
+            <tr>
+                <td>10000001236</td>
+                <td>NaN</td>
+                <td>1.000</td>
+            </tr>
+            <tr>
+                <td>10000001235</td>
+                <td>1.0000</td>
+                <td>NaN</td>
+            </tr>
+        </table>
+    </div>
+    <button class="collapsible-btn" onclick="toggleBottom()">Rows with un-eq values</button>
+</div>
+    </div>
+    <div class="last_bottom">
+        <h2>Sample Rows Only in original (First 10 Columns)</h2>
+        <table>
+            <tr>
+                <th>acct_id</th>
+                <th>dollar_amt</th>
+                <th>name</th>
+                <th>float_fld</th>
+                <th>date_fld</th>
+            </tr>
+            <tr>
+                <td>10000001238</td>
+                <td>1.05</td>
+                <td>Lucille Bluth</td>
+                <td>NaN</td>
+                <td>2017-01-01</td>
+            </tr>
+        </table>
+</div>
+<!--</div>-->
+</div>
+<script>
+// Generate dummy data
+function generateData() {
+return Array.from({length: 5}, () => Math.floor(Math.random() * 100));
+}
+
+// Create and configure charts
+var charts = [];
+
+for (var i = 1; i <= 6; i++) {
+var chartCanvas = document.getElementById('chart' + i).getContext('2d');
+var chartData = generateData();
+if(i==1){varChartType = "doughnut"}
+else{varChartType="bar"}
+var chart = new Chart(chartCanvas, {
+type: varChartType,
+data: {
+labels: ['No Of Row in Source ', 'No Of Col In Source ', 'No Of Row in Target', 'No Of Cols in Target ', 'Label 5'],
+datasets: [{
+label: 'Dataset ' + i,
+data: chartData,
+backgroundColor: 'rgba(75, 192, 192, 0.5)',
+borderColor: 'rgba(75, 192, 192, 1)',
+borderWidth: 1
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+y: {
+beginAtZero: true
+}
+}
+}
+});
+
+charts.push(chart);
+}
+
+// Function to navigate to URL
+function navigateToURL(url) {
+window.location.href = url;
+}
+</script>
+</body>
+</html>

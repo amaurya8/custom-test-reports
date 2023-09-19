@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .chart-container {
+      width: 33.33%;
+      height: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding: 10px;
+      vertical-align: top;
+      cursor: pointer;
+    }
+
+    .chart-container:nth-child(3),
+    .chart-container:nth-child(6) {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+<div class="chart-container" onclick="navigateToURL('https://example.com/chart1')">
+    <canvas id="chart1"></canvas>
+</div>
+<div class="chart-container" onclick="navigateToURL('https://example.com/chart2')">
+    <canvas id="chart2"></canvas>
+</div>
+
+<script>
+    // Generate dummy data
+    function generateData() {
+      return Array.from({length: 5}, () => Math.floor(Math.random() * 100));
+    }
+
+    // Create and configure charts
+    var charts = [];
+
+    for (var i = 1; i <= 6; i++) {
+      var chartCanvas = document.getElementById('chart' + i).getContext('2d');
+      var chartData = generateData();
+      if(i==1){varChartType = "doughnut"}
+      else{varChartType="pie"}
+      var chart = new Chart(chartCanvas, {
+        type: varChartType,
+        data: {
+          labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+          datasets: [{
+            label: 'Dataset ' + i,
+            data: chartData,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      charts.push(chart);
+    }
+
+    // Function to navigate to URL
+    function navigateToURL(url) {
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>

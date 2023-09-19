@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Test Run Report</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container1 {
+            max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left {
+            flex: 3;
+            width: 30%;
+            padding: 20px;
+        }
+
+        .right {
+            flex: 7;
+            width: 70%;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px; /* Reduce cell padding */
+            text-align: left;
+            width: 40%; /* Adjust cell width to occupy 40% horizontally */
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer; /* Add cursor pointer for sorting */
+        }
+
+        /* Conditional styling based on status */
+        .passed {
+            background-color: green;
+            color: white;
+        }
+
+        .failed {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1>#Application Test Run Report</h1>
+</div>
+
+<div class="container">
+    <div class="left">
+        <h2>Test Run Meta Details:</h2>
+        <table>
+            <tr>
+                <th>Test Env</th>
+                <td>#ENV</td>
+            </tr>
+            <tr>
+                <th>Run Date</th>
+                <td>#Curr Date</td>
+            </tr>
+            <tr>
+                <th>Test Start Time</th>
+                <td>#Start Time</td>
+            </tr>
+            <tr>
+                <th>Test End Time</th>
+                <td>#End Time</td>
+            </tr>
+            <tr>
+                <th>Total Time</th>
+                <td>#Total Time</td>
+            </tr>
+            <tr>
+                <th>Test Passed</th>
+                <td>#Test Passed</td>
+            </tr>
+            <tr>
+                <th>Test Failed</th>
+                <td>#Test Failed</td>
+            </tr>
+            <tr>
+                <th>Run ID</th>
+                <td>#Unique Run Id</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Filter input and sorting -->
+<div class="container1">
+    <div class="right">
+        <h2>Test Run Details:</h2>
+        <input type="text" id="statusFilter" placeholder="Filter by Status">
+        <table>
+            <thead>
+            <tr>
+                <th> Feature Name</th>
+                <th>Test Name</th>
+                <th> Test Status</th>
+                <th>Test Start Time</th>
+                <th>Test End Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="failed">Failed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Filter function
+    document.getElementById("statusFilter").addEventListener("keyup", function() {
+        const input = this.value.toLowerCase();
+        const table = document.querySelector(".right table tbody");
+        const rows = table.querySelectorAll("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            const cell = rows[i].querySelectorAll("td")[2]; // Index 2 is for "Test Status" cell
+            if (cell) {
+                const status = cell.textContent.toLowerCase();
+                if (status.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+<h1>Reports</h1>
+
+<h2>Column Summary</h2>
+<table>
+    <tr>
+        <th>Summary</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Number of columns in common with matching schemas</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Number of columns in common with schema differences</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Number of columns in base but not compare</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Number of columns in compare but not base</td>
+        <td>0</td>
+    </tr>
+</table>
+
+<h2>Row Summary</h2>
+<table>
+    <tr>
+        <th>Summary</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Number of rows in common</td>
+        <td>896</td>
+    </tr>
+    <tr>
+        <td>Number of rows in base but not compare</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Number of rows in compare but not base</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>Number of duplicate rows found in base</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Number of duplicate rows found in compare</td>
+        <td>1</td>
+    </tr>
+</table>
+
+<h2>Row Comparison</h2>
+<table>
+    <tr>
+        <th>Summary</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Number of rows with some columns unequal</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Number of rows with all columns equal</td>
+        <td>891</td>
+    </tr>
+</table>
+
+<h2>Column Comparison</h2>
+<table>
+    <tr>
+        <th>Summary</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Number of columns compared with some values unequal</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>Number of columns compared with all values equal</td>
+        <td>3</td>
+    </tr>
+</table>
+
+<h2>Columns with Unequal Values</h2>
+<table>
+    <tr>
+        <th>Base Column Name</th>
+        <th>Compare Column Name</th>
+        <th>Base Dtype</th>
+        <th>Compare Dtype</th>
+        <th># Matches</th>
+        <th># Mismatches</th>
+    </tr>
+    <tr>
+        <td>Store_Area</td>
+        <td>Store_Area</td>
+        <td>int</td>
+        <td>int</td>
+        <td>891</td>
+        <td>5</td>
+    </tr>
+</table>
+</body>
+</html>

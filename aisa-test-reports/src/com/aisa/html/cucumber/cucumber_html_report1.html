@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Test Run Report</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+                .container1 {
+            max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left {
+            flex: 3;
+            width: 30%;
+            padding: 20px;
+        }
+
+        .right {
+            flex: 7;
+            width: 70%;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px; /* Reduce cell padding */
+            text-align: left;
+            width: 40%; /* Adjust cell width to occupy 40% horizontally */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1>#Application Test Run Report</h1>
+</div>
+
+<div class="container">
+    <div class="left">
+        <h2>Test Run Meta Details:</h2>
+        <table>
+            <tr>
+                <th>Test Env</th>
+                <td>#ENV</td>
+            </tr>
+            <tr>
+                <th>Run Date</th>
+                <td>#Curr Date</td>
+            </tr>
+            <tr>
+                <th>Test Start Time</th>
+                <td>#Start Time</td>
+            </tr>
+            <tr>
+                <th>Test End Time</th>
+                <td>#End Time</td>
+            </tr>
+            <tr>
+                <th>Total Time</th>
+                <td>#Total Time</td>
+            </tr>
+            <tr>
+                <th>Test Passed</th>
+                <td>#Test Passed</td>
+            </tr>
+            <tr>
+                <th>Test Failed</th>
+                <td>#Test Failed</td>
+            </tr>
+            <tr>
+                <th>Run ID</th>
+                <td>#Unique Run Id</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- New data added as a table below the left part -->
+<div class="container1">
+    <div class="right">
+        <h2>Test Run Details:</h2>
+        <table>
+            <tr>
+                <th>Feature Name</th>
+                <th>Test Name</th>
+                <th>Test Status</th>
+                <th>Test Start Time</th>
+                <th>Test End Time</th>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Failed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

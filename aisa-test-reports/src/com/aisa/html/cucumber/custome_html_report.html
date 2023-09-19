@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Test Run Report</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .right {
+            flex: 2;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1>Application Test Run Report</h1>
+</div>
+
+<div class="container">
+    <div class="left">
+        <p><strong>Test Env:</strong> #ENV</p>
+        <p><strong>Run Date:</strong> #Curr Date</p>
+        <p><strong>Test Start Time:</strong> #Start Time</p>
+        <p><strong>Test End Time:</strong> #End Time</p>
+        <p><strong>Total Time:</strong> #Total Time</p>
+        <p><strong>Test Passed:</strong> #Test Passed</p>
+        <p><strong>Test Failed:</strong> #Test Failed</p>
+        <p><strong>Run ID:</strong> #Unique Run Id</p>
+    </div>
+</div>
+
+<!-- New data added as a table below the left part -->
+<div class="container">
+    <div class="left">
+        <h2>Test Data:</h2>
+        <table>
+            <tr>
+                <th>Feature Name</th>
+                <th>Test Name</th>
+                <th>Test Status</th>
+                <th>Test Start Time</th>
+                <th>Test End Time</th>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
