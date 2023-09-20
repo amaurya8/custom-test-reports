@@ -137,12 +137,15 @@
     <div class="right">
         <h2>Test Run Details:</h2>
         <input type="text" id="statusFilter" placeholder="Filter by Status">
+        <input type="text" id="featureFilter" placeholder="Filter by Feature">
+        <input type="text" id="scenarioFilter" placeholder="Filter by Scenario">
         <table>
             <thead>
             <tr>
                 <th> Feature Name</th>
-                <th>Test Name</th>
-                <th> Test Status</th>
+                <th>Scenario Name</th>
+                <th>Steps</th>
+                <th>Step Status</th>
                 <th>Test Start Time</th>
                 <th>Test End Time</th>
             </tr>
@@ -151,6 +154,7 @@
             <tr>
                 <td>Publish and consume in XYZ Database</td>
                 <td>Data published with MOU flag true</td>
+                <td>Avro Data Created and Published</td>
                 <td class="passed">Passed</td>
                 <td>HH:mm:SS.ssssss</td>
                 <td>HH:mm:SS.ssssss</td>
@@ -158,41 +162,47 @@
             <tr>
                 <td>Publish and consume in XYZ Database</td>
                 <td>Data published with MOU flag true</td>
+                <td>Avro Data consumed in db</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in XYZ Database</td>
+                <td>Data published with MOU flag true</td>
+                <td>Avro Data validated against source</td>
+                <td class="passed">Passed</td>
+                <td>HH:mm:SS.ssssss</td>
+                <td>HH:mm:SS.ssssss</td>
+            </tr>
+            <tr>
+                <td>Publish and consume in ABC Database</td>
+                <td>Data published with MOU flag false</td>
+                <td>Avro Data validated against source</td>
                 <td class="failed">Failed</td>
                 <td>HH:mm:SS.ssssss</td>
                 <td>HH:mm:SS.ssssss</td>
             </tr>
             <tr>
-                <td>Publish and consume in XYZ Database</td>
-                <td>Data published with MOU flag true</td>
-                <td class="passed">Passed</td>
+                <td>Data is tested and Authenticated</td>
+                <td>Authentication and Authorization</td>
+                <td>Input Data</td>
+                <td class="failed">Failed</td>
                 <td>HH:mm:SS.ssssss</td>
                 <td>HH:mm:SS.ssssss</td>
             </tr>
             <tr>
-                <td>Publish and consume in XYZ Database</td>
-                <td>Data published with MOU flag true</td>
-                <td class="passed">Passed</td>
+                <td>Data is tested and Authenticated</td>
+                <td>Authentication and Authorization test2</td>
+                <td>Input Data Set2</td>
+                <td class="failed">Failed</td>
                 <td>HH:mm:SS.ssssss</td>
                 <td>HH:mm:SS.ssssss</td>
             </tr>
             <tr>
-                <td>Publish and consume in XYZ Database</td>
-                <td>Data published with MOU flag true</td>
-                <td class="passed">Passed</td>
-                <td>HH:mm:SS.ssssss</td>
-                <td>HH:mm:SS.ssssss</td>
-            </tr>
-            <tr>
-                <td>Publish and consume in XYZ Database</td>
-                <td>Data published with MOU flag true</td>
-                <td class="passed">Passed</td>
-                <td>HH:mm:SS.ssssss</td>
-                <td>HH:mm:SS.ssssss</td>
-            </tr>
-            <tr>
-                <td>Publish and consume in XYZ Database</td>
-                <td>Data published with MOU flag true</td>
+                <td>Data is tested and Authenticated</td>
+                <td>Authentication and Authorization test3</td>
+                <td>Input Data Set3</td>
                 <td class="passed">Passed</td>
                 <td>HH:mm:SS.ssssss</td>
                 <td>HH:mm:SS.ssssss</td>
@@ -206,12 +216,48 @@
 <script>
     // Filter function
     document.getElementById("statusFilter").addEventListener("keyup", function() {
-        const input = this.value.toLowerCase();
+        const input = this.value.toLowerCase().trim();
         const table = document.querySelector(".right table tbody");
         const rows = table.querySelectorAll("tr");
 
         for (let i = 0; i < rows.length; i++) {
-            const cell = rows[i].querySelectorAll("td")[2]; // Index 2 is for "Test Status" cell
+            const cell = rows[i].querySelectorAll("td")[3]; // Index 3 is for "Test Status" cell
+            if (cell) {
+                const status = cell.textContent.toLowerCase();
+                if (status.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+    document.getElementById("featureFilter").addEventListener("keyup", function() {
+        const input = this.value.toLowerCase().trim();
+        const table = document.querySelector(".right table tbody");
+        const rows = table.querySelectorAll("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            const cell = rows[i].querySelectorAll("td")[0];
+            if (cell) {
+                const status = cell.textContent.toLowerCase();
+                if (status.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+        document.getElementById("scenarioFilter").addEventListener("keyup", function() {
+        const input = this.value.toLowerCase().trim();
+        const table = document.querySelector(".right table tbody");
+        const rows = table.querySelectorAll("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            const cell = rows[i].querySelectorAll("td")[1];
             if (cell) {
                 const status = cell.textContent.toLowerCase();
                 if (status.includes(input)) {
