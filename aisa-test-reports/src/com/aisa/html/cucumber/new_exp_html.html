@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Test Run Report</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container1 {
+            max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left {
+            flex: 3;
+            width: 30%;
+            padding: 20px;
+        }
+
+        .right {
+            flex: 7;
+            width: 70%;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 2px double black; /* Double-lined border */
+            padding: 5px; /* Reduce cell padding */
+            text-align: left;
+            width: 40%; /* Adjust cell width to occupy 40% horizontally */
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer; /* Add cursor pointer for sorting */
+        }
+
+        /* Conditional styling based on status */
+        .passed {
+            background-color: green;
+            color: white;
+        }
+
+        .failed {
+            background-color: red;
+            color: white;
+        }
+
+        /* Logo and title container */
+        .logo-title-container {
+            display: flex;
+            justify-content: left; /* Align logo to the left */
+            align-items: center;
+        }
+
+        .logo-title img {
+            max-width: 40%;
+            height: auto;
+        }
+
+        .title {
+            text-align: center;
+            margin: 0;
+            flex-grow: 1; /* Allow title to expand and center-align */
+        }
+
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Logo in base64 format and title -->
+<div class="logo-title-container">
+    <div class="logo">
+        <img src="data:image/png;base64,YourBase64EncodedImageHere" alt="Logo">
+    </div>
+    <h1 class="title">#Application Test Run Report</h1>
+</div>
+
+<div class="container">
+    <div class="left">
+        <h2>Test Run Meta Details:</h2>
+        <table>
+            <tr>
+                <th>Test Env</th>
+                <td>#ENV</td>
+            </tr>
+            <!-- ... (Rest of your Test Run Meta Details table) ... -->
+        </table>
+    </div>
+</div>
+
+<!-- Filter input and sorting -->
+<div class="container1">
+    <div class="right">
+        <h2>Test Run Details:</h2>
+        <input type="text" id="statusFilter" placeholder="Filter by Status">
+        <table>
+            <thead>
+            <tr>
+                <th> Feature Name</th>
+                <th>Test Name</th>
+                <th> Test Status</th>
+                <th>Test Start Time</th>
+                <th>Test End Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="collapsible">New Feature Name</div>
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <td>Feature Start Date:</td>
+                                <td>New Feature Start Date</td>
+                            </tr>
+                            <tr>
+                                <td>Feature End Date:</td>
+                                <td>New Feature End Date</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td>New Test Name</td>
+                <td class="passed">Passed</td>
+                <td>New Test Start Time</td>
+                <td>New Test End Time</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Filter function
+    document.getElementById("statusFilter").addEventListener("keyup", function() {
+        const input = this.value.toLowerCase();
+        const table = document.querySelector(".right table tbody");
+        const rows = table.querySelectorAll("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            const cell = rows[i].querySelectorAll("td")[2]; // Index 2 is for "Test Status" cell
+            if (cell) {
+                const status = cell.textContent.toLowerCase();
+                if (status.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    });
+
+</script>
+
+<script>
+    // JavaScript to make the "New Feature Name" cell collapsible
+    const coll = document.querySelectorAll('.collapsible');
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
